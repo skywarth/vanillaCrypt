@@ -1,0 +1,26 @@
+{
+  "name": "vanillacrypt",
+  "version": "1.0.0",
+  "description": "zig-zag image encryption using vanilla js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skywarth/vanillaCrypt.git"
+  },
+  "keywords": [
+    "image",
+    "encryption",
+    "vanilla",
+    "js",
+    "zig-zag"
+  ],
+  "author": "Yiğit Kürşad Ersoy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/skywarth/vanillaCrypt/issues"
+  },
+  "homepage": "https://github.com/skywarth/vanillaCrypt#readme"
+}
