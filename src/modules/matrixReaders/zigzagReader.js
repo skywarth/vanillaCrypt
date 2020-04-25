@@ -21,7 +21,6 @@ export function zigzagReader(arr) {
     }*/
 
 
-    let counter=0;
     capture.push(arr[0][0]);//first diagonal cleared
     let tracker=new tracker2();
     let diagSelector=1;
@@ -31,17 +30,17 @@ export function zigzagReader(arr) {
 
     while(diagSelector<=maxDiag){
     diagSelector++;
-    //let diagCounter=Math.max(tracker.x,tracker.y);
-    //dash to the diag
-    /*if(tracker.x=0,tracker.y=0){
-        tracker.y++;
-    }*/
 
 
     /*Dash to next diag*/
     if(finishStat){
+        //Up diag finish
         if(tracker.x===0 && tracker.y===cols-1){
             //right-top corner
+            tracker.x++;
+        }
+        else if(tracker.y===cols-1){
+            //new
             tracker.x++;
         }
         else{
@@ -51,8 +50,13 @@ export function zigzagReader(arr) {
 
     }
     else{
+        //Down diag finish
         if(tracker.y===0 && tracker.x===rows-1){
             //left-bottom corner
+            tracker.y++;
+        }
+        else if(tracker.x===rows-1){
+            //new
             tracker.y++;
         }
         else{
@@ -61,6 +65,7 @@ export function zigzagReader(arr) {
 
     }
         /*Dash to next diag*/
+
 
 
 
@@ -80,6 +85,7 @@ export function zigzagReader(arr) {
         for(let m=1;m<=readAmount;m++){
             //reading
             capture.push(arr[tracker.x][tracker.y]);
+            console.log(arr[tracker.x][tracker.y]);
             tracker.x++;
             tracker.y--;
         }
@@ -98,6 +104,7 @@ export function zigzagReader(arr) {
         for(let m=1;m<=readAmount;m++){
             //reading
             capture.push(arr[tracker.x][tracker.y]);
+            console.log(arr[tracker.x][tracker.y]);
             tracker.x--;
             tracker.y++;
         }
