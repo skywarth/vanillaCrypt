@@ -7,7 +7,6 @@ export class tracker2{
 
 
 export function zigzagReader(arr) {
-    //let dimensions = [ arr.length, arr[0].length ];
 
     let rows=arr.length;
     let cols=arr[0].length;
@@ -22,10 +21,6 @@ export function zigzagReader(arr) {
     let maxDiag=rows+cols-1;
 
     let capture=[];
-    /*for(let i=0;i<=rows*cols;i++){
-
-    }*/
-
 
     capture.push(arr[0][0]);//first diagonal cleared
     let tracker=new tracker2();
@@ -104,7 +99,6 @@ export function zigzagReader(arr) {
         for(let m=1;m<=readAmount;m++){
             //reading
             capture.push(arr[tracker.x][tracker.y]);
-            console.log(arr[tracker.x][tracker.y]);
             tracker.x++;
             tracker.y--;
         }
@@ -114,25 +108,18 @@ export function zigzagReader(arr) {
 
         tracker.x--;//recalibration
         tracker.y++;//recalibration
-        /*if(tracker.x===rows-1){
-            finishStat=true;
-        }*/
     }
     else{
         //reading to up
         for(let m=1;m<=readAmount;m++){
             //reading
             capture.push(arr[tracker.x][tracker.y]);
-            console.log(arr[tracker.x][tracker.y]);
             tracker.x--;
             tracker.y++;
         }
         finishStat=true;
         tracker.x++;//recalibration
         tracker.y--;//recalibration
-        /*if(tracker.y===cols-1){
-            finishStat=false;
-        }*/
     }
 
 
