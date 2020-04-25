@@ -11,7 +11,13 @@ export function zigzagReader(arr) {
 
     let rows=arr.length;
     let cols=arr[0].length;
-
+    let dimensionEquality=true;
+    let dimensionDiff=0;
+    let dimensionCounter=0;
+    if(rows!==cols){
+        dimensionEquality=false;
+        dimensionDiff=Math.max(rows,cols)-Math.min(rows,cols);
+    }
     let smallestDimension=Math.min(rows,cols);
     let maxDiag=rows+cols-1;
 
@@ -77,7 +83,20 @@ export function zigzagReader(arr) {
     }
     else
     {
-     readAmount=2*smallestDimension-diagSelector;
+        if(!dimensionEquality){
+            if(dimensionCounter!==dimensionDiff){
+            readAmount=smallestDimension;
+            dimensionCounter++;
+            }
+            else{
+                readAmount=2*smallestDimension-diagSelector+dimensionCounter;
+            }
+        }
+
+        else{
+            readAmount=2*smallestDimension-diagSelector;
+        }
+
     }
     /* Calc read amount */
     if(finishStat){
