@@ -3,6 +3,8 @@ import {faker} from "./src/modules/fakeImage.js";
 import {zigzagReader} from "./src/modules/matrixReaders/zigzagReader.js";
 import {blockCipherSuite} from "./src/modules/blockCipher.js";
 import {initVector} from "./src/modules/initVector.js";
+import {DES} from "./src/modules/DES.js";
+
 
 //let test11=[[1,2],[3,4]];//success                                                                    //2*2
 //let test11=[[1,2],[3,4],[5,6]];//success                                                                //3*2
@@ -22,5 +24,8 @@ console.log(ret);*/
 
 console.log(blockCipherSuite.splitToBlocks(testArr,6));*/
 
-let IV=new initVector(256,0,256);
-console.log(IV);
+/*let IV=new initVector(256,0,256);
+console.log(IV);*/
+
+console.log(DES.sboxORG);
+console.log(DES.generatePermutationTable());

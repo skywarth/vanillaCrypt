@@ -19,26 +19,61 @@ export class DES{
     }
 
     static generatePermutationTable(){
+        //STEP 8
         let permutationTable=[];
-        const sboxClone=this.sbox.slice();
+        const sboxClone=this.sboxORG.slice();
 
 
-        for(let i=0;i<=32;i+=4)
-        {
+        //for(let i=0;i<=32;i+=4)
+            for(let i=0;i<8;i++){
+        //permTable->16x32
+         //push S tables normally (4x16) then transpose whole permTable to achieve 16x32
 
 
-        let tableSelection=getRandom(1,9)
+        let tableSelection=getRandom(0,8)
         //this.transpose(sboxClone[tableSelection]);
         //permutationTable.push(sboxClone[tableSelection]); CANCEL, this'll push values as in S tables, like an array.
-        let selection=this.transpose(sboxClone[tableSelection]);
+            sboxClone[tableSelection].forEach(function(entry) {
+                permutationTable.push(entry);
+            });
 
         }
+        //DES.sharedPermTable=this.transpose(permutationTable).slice();//not direct equalisation because reference var issues
+        return this.transpose(permutationTable);
     }
+
+
+
+    /*static get sboxMOD(){
+    return this.sboxMOD;
+    }*/
+
+    static get sboxORG(){
+        return _sboxORG;
+    }
+
+    static set sboxORG(val){
+
+    }
+
+    static refreshSboxMOD(){
+        this.sboxMOD=this.sboxORG.slice();
+    }
+
+    static get sboxMOD(){
+        return _sboxMOD;
+
+    }
+    static set sboxMOD(val){
+    _sboxORG=val;
+
+    }
+
 
 
 }
 
-DES.sbox=//Each S is  4x16, 4 rows 16 cols. [S(x)][row][col]
+let _sboxORG=//Each S is  4x16, 4 rows 16 cols. [S(x)][row][col]
     [
 [ [ 14, 4, 13, 1, 2, 15, 11, 8, 3, 10, 6, 12, 5, 9, 0, 7 ],
     [ 0, 15, 7, 4, 14, 2, 13, 1, 10, 6, 12, 11, 9, 5, 3, 8 ],
@@ -84,4 +119,6 @@ DES.sbox=//Each S is  4x16, 4 rows 16 cols. [S(x)][row][col]
     [ 1, 15, 13, 8, 10, 3, 7, 4, 12, 5, 6, 11, 0, 14, 9, 2 ],
     [ 7, 11, 4, 1, 9, 12, 14, 2, 0, 6, 10, 13, 15, 3, 5, 8 ],
     [ 2, 1, 14, 7, 4, 10, 8, 13, 15, 12, 9, 0, 3, 5, 6, 11 ] ] //s8
-]; 
+];
+
+let _sboxMOD=DES.sboxORG.slice();

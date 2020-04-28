@@ -3,6 +3,7 @@ import {getRandom} from "./randomGen.js";
 export class initVector{
 
 constructor(valueAmount,rangeStart,rangeEnd) {
+    //STEP 5
     let tempArr=[];
     for(let i=0;i<valueAmount;i++){
     tempArr.push(getRandom(rangeStart,rangeEnd));
