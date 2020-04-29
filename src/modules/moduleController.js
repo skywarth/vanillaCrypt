@@ -50,7 +50,7 @@ export class moduleController{
 
     console.log(roundCiphers);
 
-
+    return roundCiphers;
     }
 
 
