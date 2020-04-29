@@ -9,17 +9,22 @@ constructor(valueAmount,rangeStart,rangeEnd) {
     tempArr.push(getRandom(rangeStart,rangeEnd));
     }
     this.vectorInstance=tempArr;
-    initVector._last=tempArr;
+    //initVector._last=tempArr;
     }
 
 
-    static getLatestIV(){
+    static get lastIV(){
     //accessor GET
-    return initVector._last;
+    return _lastIV;
+    }
+
+    static set lastIV(val){
+        //accessor GET
+        _lastIV=val;
     }
 
 
 
 }
 
-initVector._last=[];//basically a static var for the class (because static props are not widely supported yet)
+let _lastIV=[];//basically a static var for the class (because static props are not widely supported yet)

@@ -26,7 +26,7 @@ export class DES{
 
         //for(let i=0;i<=32;i+=4)
             for(let i=0;i<8;i++){
-        //permTable->16x32
+        //permTable->16x32=512
          //push S tables normally (4x16) then transpose whole permTable to achieve 16x32
 
 
@@ -47,6 +47,14 @@ export class DES{
     /*static get sboxMOD(){
     return this.sboxMOD;
     }*/
+
+    static get initPermTable(){
+        return _initPermTable;
+    }
+
+    static set initPermTable(val){
+
+    }
 
     static get sboxORG(){
         return _sboxORG;
@@ -120,5 +128,16 @@ let _sboxORG=//Each S is  4x16, 4 rows 16 cols. [S(x)][row][col]
     [ 7, 11, 4, 1, 9, 12, 14, 2, 0, 6, 10, 13, 15, 3, 5, 8 ],
     [ 2, 1, 14, 7, 4, 10, 8, 13, 15, 12, 9, 0, 3, 5, 6, 11 ] ] //s8
 ];
+
+let _initPermTable=
+    [ 58, 50, 42, 34, 26, 18, 10, 2,
+    60, 52, 44, 36, 28, 20, 12, 4,
+    62, 54, 46, 38, 30, 22, 14, 6,
+    64, 56, 48, 40, 32, 24, 16, 8,
+    57, 49, 41, 33, 25, 17, 9, 1,
+    59, 51, 43, 35, 27, 19, 11, 3,
+    61, 53, 45, 37, 29, 21, 13, 5,
+    63, 55, 47, 39, 31, 23, 15, 7];
+
 
 let _sboxMOD=DES.sboxORG.slice();

@@ -50,9 +50,9 @@ export class blockCipherSuite{
 
 
 
-   static blockProcessController(blockChunk,permTable){
+   static blockProcessController(blockChunk,permTable,roundNum){
         let permutationTable=permTable.slice();//to get rid of var reference, to prevent original array from corruption
-    let cipheredBlock=util.xorArrays(initVector.getLatestIV(),blockChunk);
+    let cipheredBlock=util.xorArrays(initVector.lastIV,blockChunk);
         const keyA=getRandom(0,31);//because this will be used to select from an Array, so we cannot use 32 as it would exceed
         const keyB=getRandom(0,31);
         //used to determine which columns of the PerTab will be selected
@@ -94,6 +94,22 @@ export class blockCipherSuite{
         xorKey.push(getRandom(0,255))
        }//random 256 keys between 0 and 255 has been generated
        cipheredBlock=util.xorArrays(cipheredBlock,xorKey);
+       //STEP 13 finished
+
+       //STEP 14
+        let subBlockSelection=roundNum%4;
+        //considering each blockChunk is 256 in length
+       let chunks=util.chunkArray(cipheredBlock,cipheredBlock.length/4);//splitting it into 4 pieces
+        chunks[subBlockSelection]=permute(chunks[subBlockSelection],DES.initPermTable);
+        cipheredBlock=util.toOneDimension(chunks);//merging back the chunks
+       //STEP 14 finished
+
+       //STEP 15
+        initVector.lastIV=cipheredBlock;
+        //STEP 15 finished
+
+
+
 
     }
 
