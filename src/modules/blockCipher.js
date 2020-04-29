@@ -1,7 +1,6 @@
 import {initVector} from "./initVector.js";
 import {getRandom} from "./randomGen.js";
 import {DES} from "./DES.js";
-import {} from "../../node_modules/d3.js"
 import {AES} from "./AES.js";
 import {util} from "./util.js";
 
@@ -26,7 +25,7 @@ export class blockCipherSuite{
 
         let diff=orgArray.length%chunkSize;
 
-            let tempBlock=[];
+            //let tempBlock=[];
 
 
             for (let i = 0; i < backupArray.length; i += chunkSize) {
@@ -38,6 +37,7 @@ export class blockCipherSuite{
             let index=result[result.length-1];
             while(index.length!==chunkSize){
                 index.push(Math.floor((Math.random() * 256)));
+
             }
 
         }
@@ -51,8 +51,16 @@ export class blockCipherSuite{
 
 
    static blockProcessController(blockChunk,permTable,roundNum){
+        //permTable is DES permTable
         let permutationTable=permTable.slice();//to get rid of var reference, to prevent original array from corruption
+
+    //STEP 7
     let cipheredBlock=util.xorArrays(initVector.lastIV,blockChunk);
+       if(cipheredBlock[24]===undefined ||cipheredBlock[24]===null){
+           debugger
+
+       }
+        //STEP 9
         const keyA=getRandom(0,31);//because this will be used to select from an Array, so we cannot use 32 as it would exceed
         const keyB=getRandom(0,31);
         //used to determine which columns of the PerTab will be selected
@@ -64,7 +72,7 @@ export class blockCipherSuite{
        //reason for transpose is to easily permute columns (to switching them to rows)
        //so that we can easily change columns. Since columns became rows...
 
-        permutationTable=DES.transpose(permTable);//became 32x16
+        permutationTable=DES.transpose(permutationTable);//became 32x16
        AES.sboxMOD=DES.transpose(AES.sboxMOD)//TODO relocate transpose function
 
        for(let i=0;i<AES.sboxMOD.length;i++){
@@ -86,6 +94,10 @@ export class blockCipherSuite{
        let oneDimAES=util.toOneDimension(AES.sboxMOD);
 
         cipheredBlock=util.xorArrays(cipheredBlock,oneDimAES);
+       if(cipheredBlock[24]===undefined ||cipheredBlock[24]===null){
+           debugger
+
+       }
         //STEP 12 finished
 
         //STEP 13
@@ -94,14 +106,22 @@ export class blockCipherSuite{
         xorKey.push(getRandom(0,255))
        }//random 256 keys between 0 and 255 has been generated
        cipheredBlock=util.xorArrays(cipheredBlock,xorKey);
+       if(cipheredBlock[24]===undefined ||cipheredBlock[24]===null){
+           debugger
+
+       }
        //STEP 13 finished
 
        //STEP 14
         let subBlockSelection=roundNum%4;
         //considering each blockChunk is 256 in length
        let chunks=util.chunkArray(cipheredBlock,cipheredBlock.length/4);//splitting it into 4 pieces
-        chunks[subBlockSelection]=permute(chunks[subBlockSelection],DES.initPermTable);
+        chunks[subBlockSelection]=permute(chunks[subBlockSelection],DES.initPermTableForPermute);
         cipheredBlock=util.toOneDimension(chunks);//merging back the chunks
+       if(cipheredBlock[24]===undefined ||cipheredBlock[24]===null){
+           debugger
+
+       }
        //STEP 14 finished
 
        //STEP 15
@@ -110,7 +130,7 @@ export class blockCipherSuite{
 
 
 
-
+    return cipheredBlock;
     }
 
 

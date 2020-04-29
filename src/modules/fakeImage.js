@@ -14,17 +14,13 @@ export class faker{
 
     generateFakeImage(){
         let fakeImage=[];
-        for(let i=0;i<=this.x;i++){
+        for(let i=0;i<this.x;i++){
             fakeImage[i]=[];
-            for(let k=0;k<=this.y;k++){
+            for(let k=0;k<this.y;k++){
             fakeImage[i][k]= Math.floor((Math.random() * 100) + 1);
             }
         }
         return fakeImage;
-    }
-
-    convertTo1DArray(){
-
     }
 
 

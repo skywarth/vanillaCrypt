@@ -9,6 +9,7 @@ constructor(valueAmount,rangeStart,rangeEnd) {
     tempArr.push(getRandom(rangeStart,rangeEnd));
     }
     this.vectorInstance=tempArr;
+    initVector.lastIV=tempArr;
     //initVector._last=tempArr;
     }
 

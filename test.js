@@ -4,6 +4,7 @@ import {zigzagReader} from "./src/modules/matrixReaders/zigzagReader.js";
 import {blockCipherSuite} from "./src/modules/blockCipher.js";
 import {initVector} from "./src/modules/initVector.js";
 import {DES} from "./src/modules/DES.js";
+import {moduleController} from "./src/modules/moduleController.js";
 
 
 //let test11=[[1,2],[3,4]];//success                                                                    //2*2
@@ -27,5 +28,13 @@ console.log(blockCipherSuite.splitToBlocks(testArr,6));*/
 /*let IV=new initVector(256,0,256);
 console.log(IV);*/
 
-console.log(DES.sboxORG);
-console.log(DES.generatePermutationTable());
+/*console.log(DES.sboxORG);
+console.log(DES.generatePermutationTable());*/
+
+export function start(){
+    let testImg1=new faker(100,50,1);
+
+    moduleController.execute(testImg1.fakeImage);
+}
+
+document.querySelector('#st').addEventListener('click', start)
