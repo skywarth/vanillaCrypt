@@ -6,6 +6,7 @@ import {initVector} from "./src/modules/initVector.js";
 import {DES} from "./src/modules/DES.js";
 import {moduleController} from "./src/modules/moduleController.js";
 import {matrixDisplayer} from "./src/matrixDisplayer.js";
+import {encryptionSuite} from "./src/modules/encryptionSuite.js";
 
 //let test11=[[1,2],[3,4]];//success                                                                    //2*2
 //let test11=[[1,2],[3,4],[5,6]];//success                                                                //3*2
@@ -34,8 +35,9 @@ console.log(DES.generatePermutationTable());*/
 export function start(){
     let testImg1=new faker(50,20,1);
     document.querySelector("#originalMatrix").appendChild(matrixDisplayer.createTable(testImg1.fakeImage));
-    let cipherBulk=moduleController.execute(testImg1.fakeImage);
-    document.querySelector("#encryptedMatrix").appendChild(matrixDisplayer.createTable(cipherBulk));
+    let cipherBulk=moduleController.encryptImage(testImg1.fakeImage);
+    let imageEncrypted=encryptionSuite.displayEncrypted(cipherBulk[cipherBulk.length-1],50,20,1);
+    document.querySelector("#encryptedMatrix").appendChild(matrixDisplayer.createTable(imageEncrypted));
 }
 
 document.querySelector('#st').addEventListener('click', start)
