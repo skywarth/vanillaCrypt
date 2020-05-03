@@ -14,6 +14,15 @@ static removeAlpha(arr){
 }
 
 
+static fillAlpha(arr){
+    for (let itemIndex = 3; itemIndex < arr.length; itemIndex += 4) {
+
+        arr.splice(itemIndex, 0, 255);
+    }
+    return arr;
+}
+
+
 
 static toOneDimension(arrToConvert){
 
