@@ -18,7 +18,7 @@ export class encryptionSuite {
 
 
         //STEP 5
-        let IV = new initVector(256, 0, 255);
+        new initVector(256, 0, 255);
 
         let roundCiphers = [];
         let cipheredBlocks = [];
@@ -53,7 +53,7 @@ export class encryptionSuite {
         return roundCiphers;
     }
 
-    static displayEncrypted(cipheredBlocks,desiredX,desiredY,color){
+    static displayEncryptedMatrix(cipheredBlocks, desiredX, desiredY, color){
         let cipheredBlocks1D=util.toOneDimension(cipheredBlocks);
         let imageEncrypted=[];
 
@@ -70,9 +70,23 @@ export class encryptionSuite {
         return imageEncrypted;
     }
 
+    static displayEncryptedImage(cipherBulk,x,y){
+        let expectedAmount=x*y*3;
 
-    static displayEncryptedImage(){
+        let imageEncrypted=cipherBulk[cipherBulk.length-1];
 
+
+        imageEncrypted=util.toOneDimension(imageEncrypted);
+        let length=imageEncrypted.length;
+        for(let i=0;i<length-expectedAmount;i++){
+            imageEncrypted.pop();
+
+        }
+
+        imageEncrypted=util.fillAlpha(imageEncrypted);
+        return imageEncrypted;
     }
+
+
 
 }
