@@ -70,4 +70,9 @@ export class encryptionSuite {
         return imageEncrypted;
     }
 
+
+    static displayEncryptedImage(){
+
+    }
+
 }

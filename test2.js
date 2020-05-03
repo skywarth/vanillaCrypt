@@ -1,6 +1,9 @@
 import {imageReader} from "./src/modules/imageIntervention/imageReader.js";
 import {util} from "./src/modules/util.js";
 import {imageWriter} from "./src/modules/imageIntervention/imageWriter.js";
+import {moduleController} from "./src/modules/moduleController.js";
+import {matrixDisplayer} from "./src/matrixDisplayer.js";
+import {encryptionSuite} from "./src/modules/encryptionSuite.js";
 
 
 let k=imageReader.imageToMatrix(document.getElementById('im')).data;
@@ -11,9 +14,30 @@ let n=util.removeAlpha(k);
 
 
 n=util.fillAlpha(n);
-var c = document.getElementById("myCanvas");
+let c = document.getElementById("myCanvas");
+console.log("org filled=");
+console.log(n);
 let q=imageWriter.writeImage(n,c,102,102);
 c.getContext("2d").putImageData(q,0,0);
 
 
-console.log(n);
+export function start(){
+    /*let testImg1=new faker(50,20,1);
+    document.querySelector("#originalMatrix").appendChild(matrixDisplayer.createTable(testImg1.fakeImage));*/
+    n=util.toTwoDimension(n,102);
+    let cipherBulk=moduleController.encryptImage(n);
+    //let imageEncrypted=encryptionSuite.displayEncrypted(cipherBulk[cipherBulk.length-1],102,102,1);
+    let imageEncrypted=cipherBulk[cipherBulk.length-1];
+    imageEncrypted=util.toOneDimension(imageEncrypted);
+    imageEncrypted=util.fillAlpha(imageEncrypted);
+    console.log("mod filled=");
+    console.log(imageEncrypted);
+    let c1 = document.getElementById("myCanvas2");
+    let q1=imageWriter.writeImage(imageEncrypted,c1,102,102);
+    c1.getContext("2d").putImageData(q1,0,0);
+}
+
+
+document.querySelector('#st2').addEventListener('click', start);
+
+

@@ -29,6 +29,12 @@ static toOneDimension(arrToConvert){
     return [].concat(...arrToConvert);
 }
 
+static toTwoDimension(arr,cols){
+    let newArr = [];
+    while(arr.length) newArr.push(arr.splice(0,cols));
+    return newArr;
+}
+
     static xorArraysOLD(arr1,arr2){//CANCEL, doesn't work as intended
         return arr1.filter(x => !arr2.includes(x));
     }
