@@ -1,3 +1,5 @@
+import {getRandom} from "./randomGen.js";
+
 export class faker{
     constructor(x,y,colorStatus) {
         this.x = x;
@@ -17,7 +19,7 @@ export class faker{
         for(let i=0;i<this.x;i++){
             fakeImage[i]=[];
             for(let k=0;k<this.y;k++){
-            fakeImage[i][k]= Math.floor((Math.random() * 100) + 1);
+            fakeImage[i][k]= getRandom(0,255);
             }
         }
         return fakeImage;

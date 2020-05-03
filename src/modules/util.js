@@ -1,4 +1,20 @@
 export class util{
+
+static removeAlpha(arr){
+    //for removing alpha layer data of image array
+    let n=Array.prototype.slice.call(arr);
+
+
+
+    n = n.filter(function(_, i) {
+        return (i + 1) % 4;
+        //hence alpha data is on every fourth element
+    })
+    return n;
+}
+
+
+
 static toOneDimension(arrToConvert){
 
     return [].concat(...arrToConvert);
