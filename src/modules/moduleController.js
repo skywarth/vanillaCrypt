@@ -7,8 +7,8 @@ import {encryptionSuite} from "./encryptionSuite.js";
 
 export class moduleController{
 
-    static encryptImage(imageMatrix){
-    return encryptionSuite.encrypt(imageMatrix);
+    static encryptImage(imageMatrix,roundAmount){
+    return encryptionSuite.encrypt(imageMatrix,roundAmount);
     }
 
 

@@ -20,7 +20,8 @@ export function start(){
     /*let testImg1=new faker(50,20,1);
     document.querySelector("#originalMatrix").appendChild(matrixDisplayer.createTable(testImg1.fakeImage));*/
     n=util.toTwoDimension(n,imgX);
-    let cipherBulk=moduleController.encryptImage(n);
+    let roundAmount=document.querySelector("#roundAmount");
+    let cipherBulk=moduleController.encryptImage(n,roundAmount.value);
     //let imageEncrypted=encryptionSuite.displayEncryptedMatrix(cipherBulk[cipherBulk.length-1],102,102,1);
     let imageEncrypted=encryptionSuite.displayEncryptedImage(cipherBulk,imgX,imgY);
     console.log("mod filled=");

@@ -9,8 +9,10 @@ import {util} from "./util.js";
 
 export class encryptionSuite {
 
-    static encrypt(imageMatrix) {
-
+    static encrypt(imageMatrix,roundAmount) {
+        if(roundAmount===undefined || roundAmount===null || roundAmount===""){
+            roundAmount=8;
+        }
         let imageMatrix1D = zigzagReader(imageMatrix);
 
         //STEP 3 and 4
@@ -23,7 +25,7 @@ export class encryptionSuite {
         let roundCiphers = [];
         let cipheredBlocks = [];
 
-        for (let k = 0; k < 8; k++) {
+        for (let k = 0; k < roundAmount; k++) {
             cipheredBlocks.length = 0;
 
             console.log("Round " + k + " started")
