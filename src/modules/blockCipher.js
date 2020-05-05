@@ -18,7 +18,7 @@ export class blockCipherSuite{
     static splitToBlocks(orgArray,chunkSize){
         //STEP 3
         if(orgArray.length<chunkSize){
-            throw 'nu-uhh, hell naw';
+            throw 'nu-uhh, hell naw. That is too short/small bud. Gimme more data';
         }
         let backupArray=orgArray.slice();//for new reference variable, otherwise original array might get corrupted or edited.
         let result = [];
