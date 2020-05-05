@@ -6,7 +6,8 @@ export class imageWriter{
         //var c = document.getElementById("myCanvas");
 
         var ctx = targetElement.getContext("2d");
-
+        ctx.canvas.width=x;
+        ctx.canvas.height=y;
         var imgData = ctx.createImageData(x, y);
 
         var i;

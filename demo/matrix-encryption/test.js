@@ -1,9 +1,9 @@
 
-import {faker} from "./src/modules/fakeImage.js";
+import {faker} from "../../src/modules/fakeImage.js";
 
-import {moduleController} from "./src/modules/moduleController.js";
-import {matrixDisplayer} from "./src/matrixDisplayer.js";
-import {encryptionSuite} from "./src/modules/encryptionSuite.js";
+import {moduleController} from "../../src/modules/moduleController.js";
+import {matrixDisplayer} from "../../src/matrixDisplayer.js";
+import {encryptionSuite} from "../../src/modules/encryptionSuite.js";
 
 //let test11=[[1,2],[3,4]];//success                                                                    //2*2
 //let test11=[[1,2],[3,4],[5,6]];//success                                                                //3*2

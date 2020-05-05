@@ -1,10 +1,14 @@
 TODO fake image creator //DONE
-TODO function(s) for reading 2D image array into 1D
+TODO function(s) for reading 2D image array into 1D //DONE
 --TODO function for reading basic 2D array into 1D using zigzag //DONE
 --TODO unit test for zigzag function including irregular(unequal) dimension arrays //DONE
 
-TODO class/function for array split for defined chunks size
+TODO class/function for array split for defined chunks size //DONE
 
+TODO encryption
+--TODO matrix encryption //DONE
+--TODO image encryption //DONE
+--TODO text encryption //DONE
 
 //OPTIONAL to do's//
 TODO crypto random function
