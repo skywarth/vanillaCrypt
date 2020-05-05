@@ -1,3 +1,7 @@
+//Wasn't done before on JS so i took the matter in my own hands
+//All hand-written. Was damn tricky to deal with yo ! //Yigit Kursad Ersoy
+
+
 export class tracker2{
     constructor() {
         this.x=0;
