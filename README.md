@@ -8,7 +8,7 @@ _**Warning:** Start off by using "*-small" version of the images. Otherwise, it 
 * **./demo** includes different applications of the algorithm, which could be used to test it. Hence, the name... Demo.
 * Console logs are left open in case you wanna check out how it's running. If performance is imperative, just disable them through modules codes.
 
-##How to use/run
+## How to use/run
 
 * First off, if you want to run it (even only the demo) you have to use certain local web server instance to get it working. It is due to the latest browser security measures. Sure you can still directly open demo's or other files in a browser, but you'll run into CORS problem. Either disable CORS or just use a web server **(nodejs, visual code built-in live preview, apache, WebStorm browser stuff, PhpStorm browser stuff... you name it)**.
 * Use a browser _(duh)_
