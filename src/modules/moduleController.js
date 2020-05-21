@@ -1,5 +1,5 @@
 import {zigzagReader} from "./matrixReaders/zigzagReader.js";
-import {blockCipherSuite} from "./blockCipher.js";
+import {blockCipherSuite} from "./blockCipherSuite.js";
 import {initVector} from "./initVector.js";
 import {DES} from "./DES.js";
 import {util} from "./util.js";
