@@ -10,6 +10,12 @@ TODO encryption
 --TODO image encryption //DONE
 --TODO text encryption //DONE
 
+
 //OPTIONAL to do's//
-TODO crypto random function
+TODO crypto/chaotic random function
+--TODO design the algorithm //DONE
+--TODO unit tests for the PRNG
+---TODO test uniform distribution //DONE it is around 8%
+---TODO test if there is a pattern (dunno how)
+---TODO test if there is a bias towards either of the limits //DONE
 

@@ -1,4 +1,5 @@
-import {faker,zigzagReader} from "./importController.js"
+
+import {faker,zigzagReader,ultraMegaFusionRandom} from "./importController.js"
 
 
 let isArray = function(a) {
@@ -118,6 +119,168 @@ QUnit.module("zigzagReader Class", function(hooks) {
             , "Passed!");
 
 
+    });
+
+});
+
+QUnit.module("UltraMegaFusionRandom class (PRNG), chaotic random", function(hooks) {
+
+
+
+    QUnit.test("Null/Undefined Check - NO SPICE - 100k Generation", function (assert) {
+        //let a=JSON.stringify(zigzagReader([[1,2,3],[4,5,6],[7,8,9]]));
+        let randomRangeIndicator= Math.floor((Math.random() * 100000) + 1);
+        let randObj=new ultraMegaFusionRandom( Math.floor((Math.random() * 1000000) + 1),false);//with random seed
+        let genAmount=100000;
+        let errStat=false;
+        for(let i=0;i<genAmount;i++){
+            let val=randObj.getNextRange(0,randomRangeIndicator);
+            if(val===undefined || val===null){
+                errStat=true;
+                throw "There is a null/undefined !";
+
+
+            }
+        }
+
+        assert.ok(
+            errStat!==true
+
+
+
+            , "Passed!, No null/undefined generated");
+    });
+
+    QUnit.test("Null/Undefined Check - SPICE - 100k Generation", function (assert) {
+        //let a=JSON.stringify(zigzagReader([[1,2,3],[4,5,6],[7,8,9]]));
+        let randomRangeIndicator= Math.floor((Math.random() * 100000) + 1);
+        let randObj=new ultraMegaFusionRandom( Math.floor((Math.random() * 1000000) + 1),true);//with random seed
+        let genAmount=100000;
+        let errStat=false;
+        for(let i=0;i<genAmount;i++){
+            let val=randObj.getNextRange(0,randomRangeIndicator);
+            if(val===undefined || val===null){
+                errStat=true;
+                throw "There is a null/undefined !";
+
+
+            }
+        }
+
+        assert.ok(
+            errStat!==true
+
+
+
+            , "Passed!, No null/undefined generated");
+    });
+
+    QUnit.test("Distribution difference for coin flip is not greater than 20% - NO SPICE- 10k flips", function (assert) {
+        //let a=JSON.stringify(zigzagReader([[1,2,3],[4,5,6],[7,8,9]]));
+        let randomRangeIndicator= Math.floor((Math.random() * 10000) + 1);
+        let randObj=new ultraMegaFusionRandom( Math.floor((Math.random() * 100000) + 1),false);//with random seed
+        let heads=0;
+        let tails=0;
+        let flipAmount=100;
+        for(let i=0;i<flipAmount;i++){
+            let val=randObj.getNextRange(randomRangeIndicator,randomRangeIndicator+2);
+            if(val===randomRangeIndicator)
+                heads++;
+            else
+                tails++;
+        }
+        let diff=(Math.max(heads,tails)-Math.min(heads,tails))*100/flipAmount;
+        assert.ok(
+            diff<=20
+
+
+
+            , "Passed!, Difference amount this time was="+diff+"%");
+    });
+
+    QUnit.test("AVERAGE Distribution difference for coin flip is not greater than 10% - NO SPICE - 10k flips - 100k RUNS", function (assert) {
+        //let a=JSON.stringify(zigzagReader([[1,2,3],[4,5,6],[7,8,9]]));
+
+        let runAmount=100000;
+        let diffs=0;
+        for (let i = 0; i <runAmount ; i++) {
+
+
+        let randomRangeIndicator= Math.floor((Math.random() * 10000) + 1);
+        let randObj=new ultraMegaFusionRandom( Math.floor((Math.random() * 100000) + 1),false);//with random seed
+        let heads=0;
+        let tails=0;
+        let flipAmount=100;
+        for(let i=0;i<flipAmount;i++){
+            let val=randObj.getNextRange(randomRangeIndicator,randomRangeIndicator+2);
+            if(val===randomRangeIndicator)
+                heads++;
+            else
+                tails++;
+        }
+        let diff=(Math.max(heads,tails)-Math.min(heads,tails))*100/flipAmount;
+        diffs+=diff;
+        }
+        assert.ok(
+            diffs/runAmount<=10
+
+
+
+            , "Passed!, AVERAGE difference amount is="+diffs/runAmount+"%");
+    });
+
+    QUnit.test("Distribution difference for coin flip is not greater than 20% - SPICE - 10k flips", function (assert) {
+        //let a=JSON.stringify(zigzagReader([[1,2,3],[4,5,6],[7,8,9]]));
+        let randomRangeIndicator= Math.floor((Math.random() * 10000) + 1);
+        let randObj=new ultraMegaFusionRandom( Math.floor((Math.random() * 100000) + 1),true);//with random seed
+        let heads=0;
+        let tails=0;
+        let flipAmount=100;
+        for(let i=0;i<flipAmount;i++){
+            let val=randObj.getNextRange(randomRangeIndicator,randomRangeIndicator+2);
+            if(val===randomRangeIndicator)
+                heads++;
+            else
+                tails++;
+        }
+        let diff=(Math.max(heads,tails)-Math.min(heads,tails))*100/flipAmount;
+        assert.ok(
+            diff<=20
+
+
+
+            , "Passed!, Difference amount this time was="+diff+"%");
+    });
+
+    QUnit.test("AVERAGE Distribution difference for coin flip is not greater than 10% - SPICE - 10k flips - 100k RUNS", function (assert) {
+        //let a=JSON.stringify(zigzagReader([[1,2,3],[4,5,6],[7,8,9]]));
+
+        let runAmount=100000;
+        let diffs=0;
+        for (let i = 0; i <runAmount ; i++) {
+
+
+            let randomRangeIndicator= Math.floor((Math.random() * 10000) + 1);
+            let randObj=new ultraMegaFusionRandom( Math.floor((Math.random() * 100000) + 1),true);//with random seed
+            let heads=0;
+            let tails=0;
+            let flipAmount=100;
+            for(let i=0;i<flipAmount;i++){
+                let val=randObj.getNextRange(randomRangeIndicator,randomRangeIndicator+2);
+                if(val===randomRangeIndicator)
+                    heads++;
+                else
+                    tails++;
+            }
+            let diff=(Math.max(heads,tails)-Math.min(heads,tails))*100/flipAmount;
+            diffs+=diff;
+        }
+        assert.ok(
+            diffs/runAmount<=10
+
+
+
+            , "Passed!, AVERAGE difference amount is="+diffs/runAmount+"%");
     });
 
 });
