@@ -48,15 +48,17 @@ constructor(seed,spicy) {
         if(this._spice){
             //Ramanujan's Constant
             let mixture=Math.pow(Math.pow(this._poison2,this._poison1),Math.sqrt(163));//Ramanujan's Constant calculation, really spicy !
-            mixture=mixture^this._poison1;//XOR mixture with PI
+            mixture=mixture^this._poison1;//XOR the mixture with PI
 
             this._current=Math.abs(this._current^mixture);//XOR the current seed with mixture
+            this._current=Math.abs(this._current%(Math.pow(this._poison1,4)));
 
         }
 
         this._current = this._current * this._mulA;
         this._current+=this._incC;
         this._current =this._current %this._modulus;
+
         return this._current;
     }
     getNext(){
