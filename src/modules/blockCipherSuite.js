@@ -1,5 +1,5 @@
 import {initVector} from "./initVector.js";
-import {getRandom} from "./randomGen.js";
+import {CKG} from "./randomGen.js";
 import {DES} from "./DES.js";
 import {AES} from "./AES.js";
 import {util} from "./util.js";
@@ -36,8 +36,8 @@ export class blockCipherSuite{
             //Filling with random vars until the chunk is equal to chunk size
             let index=result[result.length-1];
             while(index.length!==chunkSize){
-                index.push(Math.floor((Math.random() * 256)));
-
+                //index.push(Math.floor((Math.random() * 256)));
+                index.push(CKG.latestInstance.getRandom(0,255));
             }
 
         }
@@ -61,8 +61,8 @@ export class blockCipherSuite{
 
        }
         //STEP 9
-        const keyA=getRandom(0,31);//because this will be used to select from an Array, so we cannot use 32 as it would exceed
-        const keyB=getRandom(0,31);
+        const keyA=CKG.latestInstance.getRandom(0,31);//because this will be used to select from an Array, so we cannot use 32 as it would exceed
+        const keyB=CKG.latestInstance.getRandom(0,31);
         //used to determine which columns of the PerTab will be selected
 
        //continuing as permuting=swapping
@@ -103,7 +103,7 @@ export class blockCipherSuite{
         //STEP 13
        let xorKey=[];
        for(let i=0;i<256;i++){
-        xorKey.push(getRandom(0,255))
+        xorKey.push(CKG.latestInstance.getRandom(0,255))
        }//random 256 keys between 0 and 255 has been generated
        cipheredBlock=util.xorArrays(cipheredBlock,xorKey);
        if(cipheredBlock[24]===undefined ||cipheredBlock[24]===null){

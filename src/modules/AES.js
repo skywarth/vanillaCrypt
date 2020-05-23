@@ -14,6 +14,14 @@ export class AES{
     static set sboxMOD(val){
         _sboxMOD=val;
     }
+
+    static _resetSBoxMOD(){
+        _sboxMOD=AES.sboxORG.slice();
+    }
+    static resetAES(){
+        this._resetSBoxMOD();
+    }
+
 }
 
 let _sboxORG=[//16*16

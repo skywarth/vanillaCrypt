@@ -7,12 +7,12 @@ constructor(seed,spicy) {
     this._spice=spicy;
 
     this._seed=seed;
-    //constants according to glibc GCC
+    //constants according to glibc GCC wiki: https://en.wikipedia.org/wiki/Linear_congruential_generator
     this._modulus=2147483648; //2^31
     this._mulA=1103515245;
     this._incC=12345;
     this._current=seed;
-    //spices to modify. Hopefully increase entropy and chaos
+    //spices to modify. Hopefully increases entropy and chaos
     this._poison1=Math.PI;
     this._poison2=Math.E;
 
@@ -31,27 +31,23 @@ constructor(seed,spicy) {
 
 }
 
-    static get seed(){
-        return this._seed;
-    }
 
-    static set seed(val){
-        this._seed=val;
-    }
 
     truncate(number){
         const len = Math.ceil(Math.log10(number + 1));
         number=number/Math.pow(10,len);
         return number;
     }
-    _getNext(){//without truncate
+    _getNext(){//without truncate, meaning gigantic numbers
         if(this._spice){
+            //now this is where the fun begins
             //Ramanujan's Constant
             let mixture=Math.pow(Math.pow(this._poison2,this._poison1),Math.sqrt(163));//Ramanujan's Constant calculation, really spicy !
+
             mixture=mixture^this._poison1;//XOR the mixture with PI
 
             this._current=Math.abs(this._current^mixture);//XOR the current seed with mixture
-            this._current=Math.abs(this._current%(Math.pow(this._poison1,4)));
+            this._current=Math.abs(this._current%(Math.pow(this._poison1,4)));//modulus the current seed with PI^4
 
         }
 
@@ -61,7 +57,7 @@ constructor(seed,spicy) {
 
         return this._current;
     }
-    getNext(){
+    getNext(){//with truncate, meaning it will generate number between 0....1
 
         return this.truncate(this._getNext());
 
@@ -75,9 +71,9 @@ constructor(seed,spicy) {
 
     }
 
-    getNextRange(start,end){ // start inclusive, end exclusive
-        var rangeSize = end - start;
-        var randomUnder1 = this._getNext() / this._modulus;
+    getNextRange(start,end){ // start inclusive, end exclusive [start,end)
+        let rangeSize = end - start;
+        let randomUnder1 = this._getNext() / this._modulus;
         return start + Math.floor(randomUnder1 * rangeSize);
 
     }

@@ -1,6 +1,8 @@
 
 import {faker,zigzagReader,ultraMegaFusionRandom} from "./importController.js"
-
+import {CKG} from "../src/modules/randomGen.js";
+let seed=Math.floor(Math.random()*100000)+1;
+new CKG(seed,true);
 
 let isArray = function(a) {
     return (!!a) && (a.constructor === Array);

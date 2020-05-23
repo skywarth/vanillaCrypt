@@ -1,4 +1,4 @@
-import {getRandom} from "./randomGen.js";
+import {CKG} from "./randomGen.js";
 
 export class DES{
 
@@ -30,9 +30,10 @@ export class DES{
          //push S tables normally (4x16) then transpose whole permTable to achieve 16x32
 
 
-        let tableSelection=getRandom(0,8)
+        let tableSelection=CKG.latestInstance.getRandom(0,7);//this here was 0,8. Caused errors with CKG. How did it work before ???
         //this.transpose(sboxClone[tableSelection]);
         //permutationTable.push(sboxClone[tableSelection]); CANCEL, this'll push values as in S tables, like an array.
+
             sboxClone[tableSelection].forEach(function(entry) {
                 permutationTable.push(entry);
             });
@@ -72,9 +73,7 @@ export class DES{
 
     }
 
-    static refreshSboxMOD(){
-        this.sboxMOD=this.sboxORG.slice();
-    }
+
 
     static get sboxMOD(){
         return _sboxMOD;
@@ -85,7 +84,12 @@ export class DES{
 
     }
 
-
+    static _refreshSboxMOD(){
+        this.sboxMOD=this.sboxORG.slice();
+    }
+    static resetDES(){
+        this._refreshSboxMOD();
+    }
 
 }
 

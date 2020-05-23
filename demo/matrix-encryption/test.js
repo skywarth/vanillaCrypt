@@ -4,6 +4,7 @@ import {faker} from "../../src/modules/fakeImage.js";
 import {moduleController} from "../../src/modules/moduleController.js";
 import {matrixDisplayer} from "../../src/matrixDisplayer.js";
 import {encryptionSuite} from "../../src/modules/encryptionSuite.js";
+import {CKG} from "../../src/modules/randomGen.js";
 
 //let test11=[[1,2],[3,4]];//success                                                                    //2*2
 //let test11=[[1,2],[3,4],[5,6]];//success                                                                //3*2
@@ -28,13 +29,19 @@ console.log(IV);*/
 
 /*console.log(DES.sboxORG);
 console.log(DES.generatePermutationTable());*/
-
+let seed=document.querySelector("#seed");
+let spice=document.querySelector("#spice");
 export function start(){
+    if(seed.value==="" || seed.value===undefined || seed.value===null){
+        seed.value=Math.floor(Math.random()*100000)+1;
+    }
+    new CKG(seed.value,spice.checked);
     let testImg1=new faker(50,20,1);
     document.querySelector("#originalMatrix").appendChild(matrixDisplayer.createTable(testImg1.fakeImage));
     let cipherBulk=moduleController.encryptImage(testImg1.fakeImage);
     let imageEncrypted=encryptionSuite.displayEncryptedMatrix(cipherBulk[cipherBulk.length-1],50,20,1);
     document.querySelector("#encryptedMatrix").appendChild(matrixDisplayer.createTable(imageEncrypted));
+
 }
 
 document.querySelector('#st').addEventListener('click', start)
