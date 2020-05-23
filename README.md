@@ -1,12 +1,26 @@
 # Vanilla Crypt
 
+
+## Features
+* **Image Encryption** with AES, DES... (https://ieeexplore.ieee.org/abstract/document/9044816)
+* **Zigzag Matrix Read** algorithm which can read any 2D matrix, regular only. (e.g 3x4, 120x30, 1024x768 etc.) (Similar to:https://www.geeksforgeeks.org/print-matrix-zag-zag-fashion/)
+* **Custom Chaotic PRNG** capable of generating random numbers based on seed value. Used system wide. Includes glibc GCC constants, Ramanujan's Constant and chef's special spice !
+* **Generating Fake Image** to mock images. Just to prove algorithm can encrypt matrixes.
+* _**Exhaustion**, tired eyes, manic episodes, seizures due to controlling patterns in PRNG and traumatic PITA/PITB with a PTSD topping._
+
+## Dir
+
 * **./src** for modules
-* **./test** consists unit tests for zigzag matrix read algorithm
+* **./test** consists unit tests for zigzag matrix read algorithm, faker-mock image, chaotic PRNG.
 * **./test-images** sample images that are used to test the algorithm
+
+
 _**Warning:** Start off by using "*-small" version of the images. Otherwise, it could take long according to the client specs._
+
 * **./demo-ss** contains several manual test run's screenshots with distinguish inputs and outputs. 
 * **./demo** includes different applications of the algorithm, which could be used to test it. Hence, the name... Demo.
-* Console logs are left open in case you wanna check out how it's running. If performance is imperative, just disable them through modules codes.
+
+_**Notice: Console logs are left open in case you wanna check out how it's running. If performance is imperative, just disable them through modules codes.**_
 
 ## How to use/run
 
