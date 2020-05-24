@@ -1,6 +1,7 @@
 # Vanilla Crypt
 Demos: yigit.kim/vanillaCrypt
 
+Most of the processes in the system log the status in the console. You can check the developer console for debugging or inspection purposes.
 ## Features
 * **Image Encryption** with AES, DES... (https://ieeexplore.ieee.org/abstract/document/9044816)
 * **Zigzag Matrix Read** algorithm which can read any 2D matrix, regular only. (e.g 3x4, 120x30, 1024x768 etc.) (Similar to:https://www.geeksforgeeks.org/print-matrix-zag-zag-fashion/)
